@@ -1,0 +1,121 @@
+!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TheoTown Planner</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <meta name="theme-color" content="#6d28d9" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="top">
+    <div class="brand">
+      <div class="logo">TT</div>
+      <div>
+        <div class="title">TheoTown Planner</div>
+        <div class="subtitle">Plan districts • track services • save ideas</div>
+      </div>
+    </div>
+    <div class="topBtns">
+      <button id="exportBtn" class="ghost">Export</button>
+      <button id="importBtn" class="ghost">Import</button>
+      <button id="resetBtn" class="danger">Reset</button>
+    </div>
+  </header>
+
+  <main class="grid">
+    <section class="card">
+      <h2>Create a plan</h2>
+
+      <div class="row">
+        <label class="field">
+          <span>Name</span>
+          <input id="name" placeholder="River City v1" maxlength="40" />
+        </label>
+        <label class="field">
+          <span>Style</span>
+          <select id="style">
+            <option value="grid">Grid</option>
+            <option value="curvy" selected>Curvy</option>
+            <option value="river">River</option>
+            <option value="coastal">Coastal</option>
+            <option value="mountain">Mountain</option>
+          </select>
+        </label>
+      </div>
+
+      <div class="row">
+        <label class="field">
+          <span>Map size</span>
+          <select id="size">
+            <option value="small">Small</option>
+            <option value="medium" selected>Medium</option>
+            <option value="large">Large</option>
+          </select>
+        </label>
+
+        <label class="field">
+          <span>Goal</span>
+          <select id="goal">
+            <option value="fast-growth" selected>Fast growth</option>
+            <option value="pretty">Pretty / realistic</option>
+            <option value="low-traffic">Low traffic</option>
+            <option value="money">Money maker</option>
+          </select>
+        </label>
+      </div>
+
+      <div class="pillRow">
+        <button class="pill" data-tag="downtown">Downtown</button>
+        <button class="pill" data-tag="suburbs">Suburbs</button>
+        <button class="pill" data-tag="industry">Industry</button>
+        <button class="pill" data-tag="parks">Parks</button>
+        <button class="pill" data-tag="transit">Transit</button>
+        <button class="pill" data-tag="bridges">Bridges</button>
+      </div>
+
+      <label class="field">
+        <span>Notes</span>
+        <textarea id="notes" rows="5" placeholder="3 bridges. Commercial strip along river. Industry near edge with direct truck route..."></textarea>
+      </label>
+
+      <div class="services">
+        <h3>Service checklist</h3>
+        <div class="checks" id="checks"></div>
+      </div>
+
+      <div class="actions">
+        <button id="saveBtn" class="primary">Save plan</button>
+        <button id="clearBtn" class="ghost">Clear form</button>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="listHeader">
+        <h2>Saved plans</h2>
+        <div class="meta">
+          <span>Plans: <b id="planCount">0</b></span>
+        </div>
+      </div>
+
+      <div id="empty" class="empty">No plans yet. Make one on the left → Save.</div>
+      <div id="list" class="list"></div>
+    </section>
+  </main>
+
+  <dialog id="importDialog">
+    <form method="dialog" class="modal">
+      <h3>Import</h3>
+      <p class="muted">Paste exported JSON below.</p>
+      <textarea id="importText" rows="8" placeholder='{"plans":[...]}'></textarea>
+      <div class="actions">
+        <button value="cancel" class="ghost">Cancel</button>
+        <button id="doImport" value="ok" class="primary">Import</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="app.js"></script>
+</body>
+</html>
